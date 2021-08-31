@@ -1,0 +1,8 @@
+mat-toolbar {
+    background-image: var(--gradient);
+    color: white;
+}
+
+.menu-icon {
+    margin-right: 0.5%;
+}

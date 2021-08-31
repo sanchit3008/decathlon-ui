@@ -1,0 +1,52 @@
+<div class="pfp">
+  <img class="pfp" src="https://static.wikia.nocookie.net/androids/images/3/3f/Android_16_003.jpg">
+</div>
+<div class="pname">
+  Android 16
+</div>
+<mat-expansion-panel [expanded]="contactPanelOpen == true" (opened)="contactPanelOpen = true"
+  (closed)="contactPanelOpen=false">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      Contact Details
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  <div class="flex-container">
+    <div class="flex-item">
+      <mat-icon>phone</mat-icon> +91-9898989898
+    </div>
+    <div class="flex-item">
+      <mat-icon>alternate_email</mat-icon> android16@gmail.com
+    </div>
+    <div class="flex-item">
+      <mat-icon>home</mat-icon> 3/54 ABC Colony
+    </div>
+    <div class="flex-item">
+      <mat-icon>place</mat-icon> Meerut
+    </div>
+    <div class="flex-item">
+      <mat-icon>location_city</mat-icon> Uttar Pradesh
+    </div>
+    <div class="flex-item">
+      <mat-icon>pin</mat-icon> 201030
+    </div>
+  </div>
+</mat-expansion-panel>
+<mat-expansion-panel [expanded]="workPanelOpen == true" (opened)="workPanelOpen = true" (closed)="workPanelOpen=false">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      Work Details
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  <div class="flex-container">
+    <div class="flex-item">
+      <mat-icon>tag</mat-icon> 1
+    </div>
+    <div class="flex-item">
+      <mat-icon>stairs</mat-icon> Senior Full Stack Engineer
+    </div>
+    <div class="flex-item">
+      <mat-icon>local_atm</mat-icon> ₹ 15,00,000 (Yearly)
+    </div>
+  </div>
+</mat-expansion-panel>

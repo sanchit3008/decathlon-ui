@@ -1,0 +1,24 @@
+mat-card {
+  max-width: 250px; 
+  text-align: center;
+  font-family: 'Roboto';
+  color: black;
+  background-color: white;
+}
+
+mat-card-header {
+  justify-content: center;
+}
+
+.login-button {
+  background-image: var(--gradient);
+  color: white;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-image: var(--gradient);
+}

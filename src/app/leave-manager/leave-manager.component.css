@@ -1,0 +1,23 @@
+.wrapper{
+    margin-top: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.page-heading {
+    font-weight: 500;
+    font-size: xx-large;
+}
+
+.page-subheading {
+    font-weight: 300;
+    font-size: large;
+    margin-top: 2%;
+    margin-bottom: 1%;
+}
+
+#applyBtn {
+    background-image: var(--gradient);
+    color: white;
+    float: right;
+}
