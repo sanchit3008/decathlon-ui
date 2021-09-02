@@ -1,45 +1,52 @@
-import {AfterViewInit, Component, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnDestroy, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
-import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
-
-export interface UserData {
-  id: string;
-  name: string;
-  progress: string;
-  fruit: string;
-}
-
-/** Constants used to fill up our data base. */
-const FRUITS: string[] = [
-  'blueberry', 'lychee', 'kiwi', 'mango', 'peach', 'lime', 'pomegranate', 'pineapple'
-];
-const NAMES: string[] = [
-  'Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack', 'Charlotte', 'Theodore', 'Isla', 'Oliver',
-  'Isabella', 'Jasper', 'Cora', 'Levi', 'Violet', 'Arthur', 'Mia', 'Thomas', 'Elizabeth'
-];
+import { Subscription } from 'rxjs';
+import { LeaveService } from 'src/app/services/leave-service';
+import { UserService } from 'src/app/services/user-service';
+import { Leaves } from 'src/app/shared/leaves';
+import { User } from 'src/app/shared/user';
 
 @Component({
   selector: 'app-leave-list',
   templateUrl: './leave-list.component.html',
   styleUrls: ['./leave-list.component.css']
 })
-export class LeaveListComponent implements AfterViewInit  {
+export class LeaveListComponent implements AfterViewInit, OnDestroy  {
 
-  displayedColumns: string[] = ['id', 'name', 'progress', 'fruit'];
-  dataSource: MatTableDataSource<UserData>;
+  displayedColumns: string[] = ['From', 'To', 'Status'];
+  displayedColumnsForHr = ['Employee ID', 'From', 'To', 'Actions']
+  dataSource: MatTableDataSource<Leaves> = new MatTableDataSource<Leaves>();
+  leaveSub?: Subscription;
+  userDetails = new User();
+  isHr = false;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
 
-  constructor() {
-    const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
-    this.dataSource = new MatTableDataSource(users);
+  constructor(private leaveService: LeaveService, private userService: UserService) {
+    this.userDetails = this.userService.getLoggedInUser();
+    this.isHr = this.userService.isHr();
+    if(!this.isHr){
+      this.leaveSub = this.leaveService.getLeavesForEmployee(this.userDetails.empId || '')
+      .subscribe(res => {
+        this.dataSource.data = res;
+      });
+    }
+    else{
+      this.displayedColumns = this.displayedColumnsForHr;
+      this.leaveSub = this.leaveService.getPendingLeaves()
+        .subscribe(res => {
+          this.dataSource.data = res;
+        });
+    }
   }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+  }
+
+  ngOnDestroy() {
+    this.leaveSub?.unsubscribe();
   }
 
   applyFilter(event: Event) {
@@ -50,17 +57,12 @@ export class LeaveListComponent implements AfterViewInit  {
       this.dataSource.paginator.firstPage();
     }
   }
-}
 
-/** Builds and returns a new User. */
-function createNewUser(id: number): UserData {
-  const name = NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
+  approveBtnClick(leaveId: any) {
+    this.leaveService.modifyLeave(leaveId, "Approved").subscribe(() => window.location.reload());
+  }
 
-  return {
-    id: id.toString(),
-    name: name,
-    progress: Math.round(Math.random() * 100).toString(),
-    fruit: FRUITS[Math.round(Math.random() * (FRUITS.length - 1))]
-  };
+  rejectBtnClick(leaveId: any) {
+    this.leaveService.modifyLeave(leaveId, "Rejected").subscribe(() => window.location.reload());
+  }
 }

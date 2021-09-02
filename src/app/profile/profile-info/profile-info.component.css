@@ -5,8 +5,17 @@ div.pfp {
 
 img.pfp {
     clip-path: circle();
-    max-height: 50%;
-    max-width: 50%;
+    height: 10%;
+    width: 10%;
+    background-color: slategray;
+    margin-bottom: 1%;
+}
+
+@media (max-width: 800px) {
+    img.pfp {
+      height: 25%;
+      width: 25%;
+    }
 }
 
 .pname {

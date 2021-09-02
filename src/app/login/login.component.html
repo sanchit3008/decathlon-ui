@@ -5,11 +5,11 @@
         </mat-card-header>
         <mat-card-content>
             <mat-form-field appearance="outline">
-                <input matInput [formControl]="idFormControl" [errorStateMatcher]="matcher" placeholder="Employee ID"
+                <input #idInput matInput [formControl]="idFormControl" [errorStateMatcher]="matcher" placeholder="Employee ID"
                     autofocus>
                 <mat-icon matPrefix>person</mat-icon>
                 <mat-error *ngIf="idFormControl.hasError('invalid') && !idFormControl.hasError('required')">
-                    Invalid Employee ID
+                    Invalid ID/Password
                 </mat-error>
                 <mat-error *ngIf="idFormControl.hasError('required')">
                     Employee ID required
@@ -17,7 +17,7 @@
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <input matInput type="password" [formControl]="passwordFormControl" [errorStateMatcher]="matcher"
-                    placeholder="Password">
+                    placeholder="Password" (keydown)="submitFormIfEnter($event)">
                 <mat-icon matPrefix>vpn_key</mat-icon>
                 <mat-error *ngIf="passwordFormControl.hasError('required')">
                     Password required

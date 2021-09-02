@@ -1,0 +1,107 @@
+<div class="wrapper">
+    <div>
+        <span class="page-heading">Employee Manager</span>
+        <span id="float-right">
+            <mat-icon id="menu-btn" [matMenuTriggerFor]="menu">more_vert</mat-icon>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="addNew()" [disabled]="mode === 'add'">
+                    <mat-icon>add</mat-icon>
+                    <span>Add</span>
+                </button>
+                <button mat-menu-item (click)="modify()" [disabled]="mode === 'modify'">
+                    <mat-icon>edit</mat-icon>
+                    <span>Modify</span>
+                </button>
+            </mat-menu>
+        </span>
+    </div>
+
+    <div class="sub-heading">
+        <h2>{{ subHeading }}</h2>
+    </div>
+
+    <form [formGroup]="userForm">
+        <div class="form-content flex-container">
+            <div class="flex-item">
+                <mat-form-field appearance="standard">
+                    <span matPrefix>Name: &nbsp;</span>
+                    <input matInput formControlName="name" [errorStateMatcher]="matcher">
+                    <!-- <mat-error *ngIf="empInput.invalid">Invalid ID</mat-error> -->
+                </mat-form-field>
+            </div>
+            <div class="flex-item" *ngIf="mode === 'modify'">
+                <mat-form-field appearance="fill">
+                    <span matPrefix>ID: &nbsp;</span>
+                    <input matInput formControlName="empId" [errorStateMatcher]="matcher" readonly>
+                    <!-- <mat-error *ngIf="empInput.invalid">Invalid ID</mat-error> -->
+                </mat-form-field>
+            </div>
+            <div class="flex-item">
+                <mat-form-field appearance="standard">
+                    <span matPrefix>Phone: (+91) &nbsp;</span>
+                    <input matInput formControlName="phone" [errorStateMatcher]="matcher">
+                    <!-- <mat-error *ngIf="empInput.invalid">Invalid ID</mat-error> -->
+                </mat-form-field>
+            </div>
+            <div class="flex-item">
+                <mat-form-field appearance="standard">
+                    <span matPrefix>Email: &nbsp;</span>
+                    <input matInput formControlName="email" [errorStateMatcher]="matcher">
+                    <!-- <mat-error *ngIf="empInput.invalid">Invalid ID</mat-error> -->
+                </mat-form-field>
+            </div>
+            <div class="flex-item">
+                <mat-form-field appearance="standard">
+                    <span matPrefix>Photo URL: &nbsp;</span>
+                    <input matInput formControlName="photo" [errorStateMatcher]="matcher">
+                    <!-- <mat-error *ngIf="empInput.invalid">Invalid ID</mat-error> -->
+                </mat-form-field>
+            </div>
+            <div class="flex-item">
+                <mat-form-field appearance="standard">
+                    <span matPrefix>Address: &nbsp;</span>
+                    <input matInput formControlName="home" [errorStateMatcher]="matcher">
+                    <!-- <mat-error *ngIf="empInput.invalid">Invalid ID</mat-error> -->
+                </mat-form-field>
+            </div>
+            <div class="flex-item">
+                <mat-form-field appearance="standard">
+                    <span matPrefix>City: &nbsp;</span>
+                    <input matInput formControlName="city" [errorStateMatcher]="matcher" >
+                    <!-- <mat-error *ngIf="empInput.invalid">Invalid ID</mat-error> -->
+                </mat-form-field>
+            </div>
+            <div class="flex-item">
+                <mat-form-field appearance="standard">
+                    <span matPrefix>State: &nbsp;</span>
+                    <input matInput formControlName="state" [errorStateMatcher]="matcher" >
+                    <!-- <mat-error *ngIf="empInput.invalid">Invalid ID</mat-error> -->
+                </mat-form-field>
+            </div>
+            <div class="flex-item">
+                <mat-form-field appearance="standard">
+                    <span matPrefix>Pincode: &nbsp;</span>
+                    <input matInput formControlName="pincode" [errorStateMatcher]="matcher">
+                    <!-- <mat-error *ngIf="empInput.invalid">Invalid ID</mat-error> -->
+                </mat-form-field>
+            </div>
+            <div class="flex-item">
+                <mat-form-field appearance="standard">
+                    <span matPrefix>Salary (Yearly): &nbsp;</span>
+                    <input matInput formControlName="salary" [errorStateMatcher]="matcher">
+                    <!-- <mat-error *ngIf="empInput.invalid">Invalid ID</mat-error> -->
+                </mat-form-field>
+            </div>
+            <div class="flex-item">
+                <mat-form-field appearance="standard">
+                    <span matPrefix>Designation: &nbsp;</span>
+                    <input matInput formControlName="designation" [errorStateMatcher]="matcher">
+                    <!-- <mat-error *ngIf="empInput.invalid">Invalid ID</mat-error> -->
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+    <div class="btn-div">
+        <button mat-raised-button class="submit-btn" [disabled]="userForm.invalid" (click)="onSubmit()">Submit</button>
+    </div>
+</div>

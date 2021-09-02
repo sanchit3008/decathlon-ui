@@ -1,9 +1,9 @@
-<mat-drawer-container autosize *ngIf="!isLogin">
+<mat-drawer-container autosize>
     <mat-drawer #drawer mode="push">
-       <app-sidebar></app-sidebar> 
+        <app-sidebar *ngIf="isUserLoggedIn()"></app-sidebar>
     </mat-drawer>
-    <app-header (menuClicked)="drawer.toggle()"></app-header>
+    <app-header *ngIf="isUserLoggedIn()" (menuClicked)="drawer.toggle()"></app-header>
     <router-outlet></router-outlet>
 </mat-drawer-container>
 
-<router-outlet *ngIf="isLogin"></router-outlet>
+<!-- <router-outlet *ngIf="!isUserLoggedIn()"></router-outlet> -->

@@ -24,11 +24,16 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { ProfileInfoComponent } from './profile/profile-info/profile-info.component';
 import { LeaveManagerComponent } from './leave-manager/leave-manager.component';
 import { LeaveListComponent } from './leave-manager/leave-list/leave-list.component';
-import { ProfileSearchComponent } from './profile/profile-search/profile-search.component';
 import { ProfileComponent } from './profile/profile.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import { DateDialogComponent } from './leave-manager/date-dialog/date-dialog.component';
-
+import { AuthService } from './services/auth-service';
+import { HttpClientModule } from '@angular/common/http';
+import { UserService } from './services/user-service';
+import { LeaveService } from './services/leave-service';
+import { EmployeeManagerComponent } from './employee-manager/employee-manager.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { EmpidDialogComponent } from './employee-manager/empid-dialog/empid-dialog.component';
 
 @NgModule({
   declarations: [
@@ -39,9 +44,10 @@ import { DateDialogComponent } from './leave-manager/date-dialog/date-dialog.com
     ProfileInfoComponent,
     LeaveManagerComponent,
     LeaveListComponent,
-    ProfileSearchComponent,
     ProfileComponent,
-    DateDialogComponent
+    DateDialogComponent,
+    EmployeeManagerComponent,
+    EmpidDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,9 +68,15 @@ import { DateDialogComponent } from './leave-manager/date-dialog/date-dialog.com
     MatDatepickerModule,
     MatPaginatorModule,
     MatDialogModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    HttpClientModule,
+    MatMenuModule
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    UserService,
+    LeaveService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

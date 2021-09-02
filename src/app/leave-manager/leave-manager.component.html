@@ -2,7 +2,7 @@
 
     <div>
         <span class="page-heading">Leave Manager</span>
-        <button mat-raised-button id="applyBtn" (click)="leaveBtnClick()">Apply</button>
+        <button mat-raised-button id="applyBtn" (click)="leaveBtnClick()" *ngIf="!isHr">Apply</button>
     </div>
     
     <app-leave-list></app-leave-list>

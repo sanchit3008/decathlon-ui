@@ -1,8 +1,8 @@
 <div class="pfp">
-  <img class="pfp" src="https://static.wikia.nocookie.net/androids/images/3/3f/Android_16_003.jpg">
+  <img class="pfp" [src]="userDetails.photo">
 </div>
 <div class="pname">
-  Android 16
+  {{userDetails.name}}
 </div>
 <mat-expansion-panel [expanded]="contactPanelOpen == true" (opened)="contactPanelOpen = true"
   (closed)="contactPanelOpen=false">
@@ -13,22 +13,22 @@
   </mat-expansion-panel-header>
   <div class="flex-container">
     <div class="flex-item">
-      <mat-icon>phone</mat-icon> +91-9898989898
+      <mat-icon>phone</mat-icon> {{userDetails.phone}}
     </div>
     <div class="flex-item">
-      <mat-icon>alternate_email</mat-icon> android16@gmail.com
+      <mat-icon>alternate_email</mat-icon> {{userDetails.email}}
     </div>
     <div class="flex-item">
-      <mat-icon>home</mat-icon> 3/54 ABC Colony
+      <mat-icon>home</mat-icon> {{userDetails.home}}
     </div>
     <div class="flex-item">
-      <mat-icon>place</mat-icon> Meerut
+      <mat-icon>place</mat-icon> {{userDetails.city}}
     </div>
     <div class="flex-item">
-      <mat-icon>location_city</mat-icon> Uttar Pradesh
+      <mat-icon>location_city</mat-icon> {{userDetails.state}}
     </div>
     <div class="flex-item">
-      <mat-icon>pin</mat-icon> 201030
+      <mat-icon>pin</mat-icon> {{userDetails.pincode}}
     </div>
   </div>
 </mat-expansion-panel>
@@ -40,13 +40,13 @@
   </mat-expansion-panel-header>
   <div class="flex-container">
     <div class="flex-item">
-      <mat-icon>tag</mat-icon> 1
+      <mat-icon>tag</mat-icon> {{userDetails.empId}}
     </div>
     <div class="flex-item">
-      <mat-icon>stairs</mat-icon> Senior Full Stack Engineer
+      <mat-icon>stairs</mat-icon> {{userDetails.designation}}
     </div>
     <div class="flex-item">
-      <mat-icon>local_atm</mat-icon> ₹ 15,00,000 (Yearly)
+      <mat-icon>local_atm</mat-icon>{{userDetails.salary | currency:'INR'}} (Yearly)
     </div>
   </div>
 </mat-expansion-panel>

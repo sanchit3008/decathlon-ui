@@ -1,0 +1,45 @@
+.wrapper{
+    margin-top: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.page-heading {
+    font-weight: 500;
+    font-size: xx-large;
+}
+
+@media (max-width: 800px) {
+    .page-heading {
+        font-size: x-large;
+    }    
+}
+
+#float-right {
+    float: right;
+}
+
+#menu-btn:hover {
+    cursor: pointer;
+}
+
+.form-content {
+    margin-top: 2%;
+    border: 1px gray solid;
+    margin-bottom: 1%;
+}
+
+mat-form-field {
+    width: 80%;
+    padding-left: 10%;
+}
+
+.sub-heading {
+    margin-top: 2%;
+}
+
+.btn-div {
+    width: 100%;;
+    text-align: center;
+    margin-bottom: 1%;
+}

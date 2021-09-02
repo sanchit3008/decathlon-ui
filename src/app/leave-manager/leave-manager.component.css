@@ -21,3 +21,13 @@
     color: white;
     float: right;
 }
+
+@media (max-width: 800px) {
+    .page-heading {
+        font-size: x-large;
+    }    
+
+    #applyBtn {
+        font-size: small
+    }
+}

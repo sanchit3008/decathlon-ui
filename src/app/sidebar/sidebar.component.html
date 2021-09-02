@@ -1,11 +1,12 @@
 <div class="pfp">
-    <img class="pfp" src="https://static.wikia.nocookie.net/androids/images/3/3f/Android_16_003.jpg">
+    <img class="pfp" [src]="userDetails.photo">
 </div>
 <div class="pname">
-    Android 16
+    {{userDetails.name}}
 </div>
 <ul>
     <li [routerLink]="['/profile']">Profile</li>
     <li [routerLink]="['/leaves']">Leave Manager</li>
-    <li id="logout">Logout</li>
+    <li *ngIf="isHr" [routerLink]="['/employee']">Employee Manager</li>
+    <li id="logout" (click)="logout()">Logout</li>
 </ul>

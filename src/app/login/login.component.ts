@@ -1,36 +1,72 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { FormControl, FormGroupDirective, NgForm, Validators, FormsModule } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
-
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-  }
-}
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { AuthService } from '../services/auth-service';
+import { UserService } from '../services/user-service';
+import { MyErrorStateMatcher } from 'src/app/shared/matcher';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
-  constructor() { }
+  constructor(
+    private router:Router,
+    private userService: UserService,
+    private authService: AuthService
+  ) { }
+
+  currentRoute = '';
+  matcher = new MyErrorStateMatcher();
+  idFormControl = new FormControl('', [Validators.required]);
+  passwordFormControl = new FormControl('', [Validators.required]);
+  loginSub?: Subscription;
 
   ngOnInit(): void {
+    if(this.userService.isUserLoggedIn()) {
+      this.router.navigate(['/profile']);
+    }
+
+    this.currentRoute = this.router.url;
+    if(this.currentRoute === '/') {
+      this.router.navigate(['/login']);
+    }
   }
 
-  idFormControl = new FormControl('', [
-    Validators.required
-  ]);
+  onSubmit() {
+    if(this.idFormControl.invalid || this.passwordFormControl.invalid) 
+      return;
 
-  passwordFormControl = new FormControl('', [
-    Validators.required
-  ]);
+    let empId = this.idFormControl.value || "";
+    empId = empId.toLowerCase();
+    let pwd = this.passwordFormControl.value || "";
 
-  matcher = new MyErrorStateMatcher();
+    this.loginSub = this.authService.getLoginInfo(empId,pwd).subscribe({
+      next: res => {
+          if(!res) this.idFormControl.setErrors({'invalid': true});
+          else{
+            this.userService.setLoggedInUser(res);
+            this.router.navigate(['/profile']);
+          }
+      },
+      error: () => this.idFormControl.setErrors({'invalid': true})
+    });
+  }
 
-  onSubmit = () => console.log("Submitted");
+  submitFormIfEnter(event: KeyboardEvent): void {
+    if(this.idFormControl.invalid || this.passwordFormControl.invalid) {
+      return;
+    }
+    if(event.key === "Enter") {
+      this.onSubmit();
+    }
+  }
 
+  ngOnDestroy() {
+    this.loginSub?.unsubscribe();
+  }
 }

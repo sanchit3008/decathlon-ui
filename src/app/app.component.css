@@ -9,7 +9,7 @@ mat-drawer {
     padding-top: 5%;
 }
 
-@media screen and (max-width: 760px) {
+@media (max-width: 760px) {
     mat-drawer {
         width: 50vw;
     }

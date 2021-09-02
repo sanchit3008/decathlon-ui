@@ -1,0 +1,14 @@
+<div class="wrapper">
+    <h2 mat-dialog-title>Modify Employee</h2>
+    <div mat-dialog-content>
+        <mat-form-field appearance="fill">
+            <span matPrefix>emp &nbsp;</span>
+            <input matInput #input [formControl]="empInput" placeholder="Enter id..." [errorStateMatcher]="matcher">     
+            <mat-error *ngIf="empInput.invalid">Invalid ID</mat-error>
+        </mat-form-field>
+    </div>
+    <div mat-dialog-actions class="actions">
+        <button mat-raised-button (click)="onNoClick()">Cancel</button> 
+        <button mat-raised-button id="submitBtn" [mat-dialog-close]="checkEmpId()" [disabled]="empInput.invalid">Submit</button>
+    </div>
+    </div>
