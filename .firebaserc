@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "newagent-147df": {
+      "hosting": {
+        "ems-ui": [
+          "newagent-147df"
+        ]
+      }
+    }
+  }
+}

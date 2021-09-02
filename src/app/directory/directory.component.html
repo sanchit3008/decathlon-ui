@@ -1,0 +1,17 @@
+<div class="wrapper">
+    <div>
+        <span class="page-heading">Directory</span>
+    </div>
+    <div class="flex-container">
+        <div class="flex-item" *ngFor="let user of users">
+            <mat-card>
+                <mat-card-title-group [routerLink]="['/employee', user.empId]">
+                  <mat-card-title>{{ user.name }}</mat-card-title>
+                  <mat-card-subtitle>{{ user.designation }}</mat-card-subtitle>
+                  <mat-card-subtitle>#{{ user.empId }} <br> {{ user.email }}</mat-card-subtitle>
+                  <img mat-card-sm-image [src]="user.photo" >
+                </mat-card-title-group>
+              </mat-card>
+        </div>
+    </div>
+</div>

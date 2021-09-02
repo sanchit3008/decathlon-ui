@@ -34,6 +34,7 @@ import { LeaveService } from './services/leave-service';
 import { EmployeeManagerComponent } from './employee-manager/employee-manager.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { EmpidDialogComponent } from './employee-manager/empid-dialog/empid-dialog.component';
+import { DirectoryComponent } from './directory/directory.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { EmpidDialogComponent } from './employee-manager/empid-dialog/empid-dial
     DateDialogComponent,
     EmployeeManagerComponent,
     EmpidDialogComponent,
+    DirectoryComponent,
   ],
   imports: [
     BrowserModule,

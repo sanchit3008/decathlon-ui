@@ -1,0 +1,28 @@
+.wrapper{
+    margin-top: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.page-heading {
+    font-weight: 500;
+    font-size: xx-large;
+}
+
+@media (max-width: 800px) {
+    .page-heading {
+        font-size: x-large;
+    }    
+}
+
+.flex-container {
+    margin-top: 2%;
+}
+
+img {
+    border-radius: 50%;
+}
+
+mat-card-title-group:hover {
+    cursor: pointer;
+}

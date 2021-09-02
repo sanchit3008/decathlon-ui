@@ -30,6 +30,10 @@ export class UserService implements OnInit {
         return this.http.put(`${this.localUrl}/employee/modify`, body);
     }
 
+    getAllUsers(): Observable<User[]> {
+        return this.http.get<User[]>(`${this.localUrl}/employee/all`)
+    }
+
     setLoggedInUser(user: any): void {
         let loggedInUser = new User();
         loggedInUser.city = user?.city;

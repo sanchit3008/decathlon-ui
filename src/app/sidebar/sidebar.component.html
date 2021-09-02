@@ -6,6 +6,7 @@
 </div>
 <ul>
     <li [routerLink]="['/profile']">Profile</li>
+    <li *ngIf="isHr" [routerLink]="['/directory']">Directory</li>
     <li [routerLink]="['/leaves']">Leave Manager</li>
     <li *ngIf="isHr" [routerLink]="['/employee']">Employee Manager</li>
     <li id="logout" (click)="logout()">Logout</li>
